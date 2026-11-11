@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annual Testing | Vestwell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div class="app">
+  <nav class="rail" aria-label="Main">
+    <a href="#" title="Home"><i data-lucide="house"></i></a>
+    <a href="#" title="Employees"><i data-lucide="users"></i></a>
+    <a href="#" title="Contributions"><i data-lucide="hand-coins"></i></a>
+    <a href="#" title="My Plan" class="on"><i data-lucide="file-text"></i></a>
+    <a href="#" title="Company"><i data-lucide="building"></i></a>
+    <a href="#" title="Resources"><i data-lucide="library-big"></i></a>
+    <a href="#" title="Sign out" class="bottom"><i data-lucide="log-out"></i></a>
+  </nav>
+  <aside class="subnav">
+    <button class="collapse" title="Collapse"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h13M3 12h10M3 18h13M21 8l-4 4 4 4"/></svg></button>
+    <a href="#">Documents</a>
+    <a href="#">Investment Comparison</a>
+    <a href="#" class="on">Annual Testing <span class="caret">&#9656;</span></a>
+    <a href="#">Forfeiture and Suspense</a>
+    <a href="#">Invoices</a>
+  </aside>
+  <main class="content">
+    <h1>Annual Testing</h1>
+    <p class="sub" id="planLine"></p>
+
+    <div class="grid-2">
+      <section class="card" id="midYear">
+        <h2>2026 Mid-Year Estimated Testing</h2>
+        <p class="muted" id="myLine"></p>
+        <table class="tbl compact" id="myTbl"></table>
+        <p class="muted fine">Not a formal ADP test. Results may change with compensation or savings-rate changes, end-of-year contributions and HCE classification.</p>
+        <div class="card-actions"><span class="status" id="myStatus"></span><button class="btn">Review Data and Test</button></div>
+      </section>
+
+      <section class="card forecast" id="fc">
+        <div class="h2row"><h2>Year-End Forecast</h2><span class="badge">New</span></div>
+        <p class="muted">Simulates the rest of the plan year from your payroll data: terminations, election changes, bonuses and employees who become eligible.</p>
+        <div class="fc-top">
+          <div class="bignum"><div class="label">Chance of failing ADP</div><div class="val" id="pAdp"></div><div class="small" id="pAcp"></div></div>
+          <div class="bignum"><div class="label">Expected HCE refund</div><div class="val" id="refund"></div><div class="small" id="refundP90"></div></div>
+        </div>
+        <div class="chart-title">Year-end ADP margin (limit − HCE average), <span id="drawsN"></span> simulated years</div>
+        <svg id="marginChart" class="chart" height="150"></svg>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="h2row between"><h2>Fix It Before Year-End</h2>
+        <label class="sel">Target risk
+          <select id="target"><option value="0.02">2%</option><option value="0.05" selected>5%</option><option value="0.10">10%</option></select>
+        </label>
+      </div>
+      <p class="muted" id="fixLine"></p>
+      <table class="tbl" id="fixTbl"></table>
+    </section>
+
+    <div class="grid-2 wide-left">
+      <section class="card">
+        <h2>What Moves the Result</h2>
+        <p class="muted">Risk of failing ADP if one source of uncertainty is switched off. The biggest drop is the biggest driver.</p>
+        <table class="tbl" id="drvTbl"></table>
+      </section>
+      <section class="card">
+        <h2>How Accurate Is the Forecast?</h2>
+        <p class="muted" id="btLine"></p>
+        <svg id="relChart" class="chart" height="210"></svg>
+        <div class="legend"><span><i class="sq blue"></i>Forecast</span><span><i class="ln"></i>Perfect calibration</span></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="h2row between"><h2>Census Forecast</h2><a href="#" class="link" id="toggleAll">Show all employees</a></div>
+      <table class="tbl" id="censusTbl"></table>
+    </section>
+
+    <div class="info"><i data-lucide="info"></i><span>This is not a formal ADP test. Forecasts use payroll data through the as-of date and book-of-business assumptions for the rest of the year.</span></div>
+    <p class="footer-note">Unofficial concept demo by Mohith Gajjela. Not affiliated with Vestwell. Synthetic data.</p>
+  </main>
+  <button class="help" title="Help">?</button>
+</div>
+<div class="tip" id="tip"></div>
+<script src="core/forecast.js"></script>
+<script src="core/synth.js"></script>
+<script src="data/plan.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
